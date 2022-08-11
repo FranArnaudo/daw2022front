@@ -5,20 +5,25 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  constructor(private builder: FormBuilder, private router: Router) {}
 
-  constructor(private builder: FormBuilder, private router : Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  navigateToRegister() {
+    this.router.navigate(['jugadores/nuevo']);
   }
 
-  navigateToRegister(){
-    this.router.navigate(['jugadores/nuevo'])
-  }
-  navigateToJugadores(){
-    this.router.navigate(['jugadores'])
+  navigateToJugadores() {
+    this.router.navigate(['jugadores']);
   }
 
+  navigateToNacionalidades() {
+    this.router.navigate(['nacionalidades']);
+  }
+  navigateToDisciplinas() {
+    this.router.navigate(['disciplinas']);
+  }
 }

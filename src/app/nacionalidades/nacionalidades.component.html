@@ -1,0 +1,120 @@
+<div class="container h-100 d-flex justify-content-center align-items-center">
+  <div class="card" style="width: 70%">
+    <div class="card-header">
+      <h3>Listado de nacionalidades</h3>
+    </div>
+    <div class="card-body container">
+      <div class="btn-group">
+        <button class="btn btn-secondary" (click)="goHome()">Home</button>
+        <button class="btn btn-primary" (click)="goCreate()">
+          Nuevo jugador
+        </button>
+        <button
+          class="btn btn-primary d-flex justify-content-end"
+          (click)="goCreate()"
+        >
+          Nueva nacionalidad
+        </button>
+      </div>
+      <form [formGroup]="searchForm">
+        <div class="form-group row mb-3">
+          <div class="col-12">
+            <label class="text-bold" for="text">Filtro:</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="text"
+                formControlName="text"
+                class="form-control d-inline"
+                placeholder="Busque por Nombre, Apellido, DNI..."
+              />
+              <input
+                type="button"
+                id="send-query"
+                class="btn btn-primary"
+                value="Buscar"
+                (click)="goHome()"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="table w-100">
+        <thead class="w-100">
+          <tr class="w-100">
+            <th scope="col">ID</th>
+            <th scope="col">Codigo</th>
+            <th scope="col" class="w-50">Nombre</th>
+            <th scope="col" class="w-50">Descripcion</th>
+          </tr>
+        </thead>
+        <tbody class="w-100">
+          <tr class="w-100 align-items-center" *ngFor="let j of jugadores">
+            <td>{{ n.id }}</td>
+            <td>{{ n.codigo }}</td>
+            <td>{{ n.nombre }}</td>
+            <td>{{ n.descripcion }}</td>
+            <td class="w-100">
+              <div class="d-flex justify-content-end align">
+                <button type="button" class="btn btn-primary">
+                  <i class="fa-solid fa-pencil" (click)="goToEdit(j.id)"></i>
+                </button>
+                <button type="button" class="btn btn-danger ms-2">
+                  <i class="fa-solid fa-trash" (click)="delete(j.id)"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </div>
+      <nav class="d-flex justify-content-between">
+        <ul class="pagination">
+          <li
+            [ngClass]="
+              paginado.currentPage === 0 ? 'page-item disabled' : 'page-item'
+            "
+          >
+            <a
+              class="page-link"
+              (click)="setPage(paginado.currentPage - 1)"
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li
+            *ngFor="let n of [].constructor(paginado.totalPages); let i = index"
+            class="page-item"
+          >
+            <a class="page-link" (click)="setPage(i)">{{ i + 1 }}</a>
+          </li>
+          <li
+            [ngClass]="
+              paginado.currentPage === paginado.totalPages - 1
+                ? 'page-item disabled'
+                : 'page-item'
+            "
+          >
+            <a
+              class="page-link"
+              (click)="setPage(paginado.currentPage + 1)"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+        <select id="size" class="page-size" (change)="setSize($event.target)">
+          <option value="2" selected>2</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </nav>
+    </div>
+    <div class="card-footer d-flex justify-content-center">
+      <p class="text-secondary">DAW 2022</p>
+    </div>
+  </div>
+</div>

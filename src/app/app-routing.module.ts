@@ -5,18 +5,20 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { NacionalidadesComponent } from './nacionalidades/nacionalidades.component';
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent},
-  {path:'home', component: HomeComponent},
-  {path:'jugadores/nuevo', component: RegisterComponent },
-  {path:'jugadores', component: JugadoresComponent},
-  {path:'jugadores/editar/:id', component: EditUserComponent},
-  { path: '',   redirectTo: '/home', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'jugadores/nuevo', component: RegisterComponent },
+  { path: 'jugadores', component: JugadoresComponent },
+  { path: 'jugadores/editar/:id', component: EditUserComponent },
+  { path: 'nacionalidades', component: NacionalidadesComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
