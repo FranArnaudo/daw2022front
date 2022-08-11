@@ -1,0 +1,32 @@
+<div class="container h-100 d-flex justify-content-center align-items-center">
+  <div class="card w-50">
+    <header class="card-header">
+      <h3>
+        Bienvenidos
+      </h3>
+    </header>
+    <div class="card-body container">
+      <div class="row">
+        <div class="col-6">
+          <input 
+          type="button"
+          class="btn btn-primary w-100"
+          value="Nuevo"
+          (click)="navigateToRegister()"
+          />
+        </div>
+        <div class="col-6">
+          <input 
+          type="button"
+          class="btn btn-primary w-100"
+          value="Jugadores"
+          (click)="navigateToJugadores()"
+          />
+        </div>
+      </div>
+    </div>
+    <footer class="card-footer text-center">
+      <p class="text-secondary">DAW 2022</p>
+    </footer>
+  </div>
+</div>

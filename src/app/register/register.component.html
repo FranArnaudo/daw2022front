@@ -1,0 +1,123 @@
+<div class="container d-flex justify-content-center align-items-center h-100">
+  <div class="card w-50 ">
+    <div class="card-header">
+      <h3>Registrar nuevo jugador</h3>
+    </div>
+    <div class="card-body">
+      <div class="card-body container">
+        <div class="btn-group">
+          <button class="btn btn-secondary" (click)="goHome()">Home</button>
+          <button class="btn btn-primary" (click)="goToList()">Listado de jugadores</button>
+        </div>
+      <form [formGroup]="registerForm"(ngSubmit)="onSubmit($event)">
+        <div class="form-group mb-2">
+          <label for="firstname">Nombre:</label>
+          <input
+            [ngClass]="registerForm.controls['firstname'].invalid && (registerForm.controls['firstname'].dirty || registerForm.controls['firstname'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su nombre"
+            id="firstname"
+            formControlName="firstname"
+            name="firstname"
+            type="text"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="lastname">Apellido:</label>
+          <input
+            [ngClass]="registerForm.controls['lastname'].invalid && (registerForm.controls['lastname'].dirty || registerForm.controls['lastname'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su apellido"
+            id="lastname"
+            formControlName="lastname"
+            name="lastname"
+            type="text"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="email">Email:</label>
+          <input
+          [ngClass]="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su apellido"
+            id="email"
+            formControlName="email"
+            name="email"
+            type="text"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="dni">DNI:</label>
+          <input
+            [ngClass]="registerForm.controls['dni'].invalid && (registerForm.controls['dni'].dirty || registerForm.controls['dni'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su DNI"
+            formControlName="dni"
+            id="dni"
+            name="dni"
+            type="number"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="phone">Telefono:</label>
+          <input
+          [ngClass]="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].dirty || registerForm.controls['phone'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su telefono"
+            formControlName="phone"
+            name="phone"
+            type="number"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="legajo">Legajo:</label>
+          <input
+            [ngClass]="registerForm.controls['legajo'].invalid && (registerForm.controls['legajo'].dirty || registerForm.controls['legajo'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+            placeholder="Ingrese su legajo"
+            formControlName="legajo"
+            name="legajo"
+            type="number"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="nacimiento">Fecha de nacimiento:</label>
+          <input id="nacimiento" type="date" formControlName="nacimiento"
+          [ngClass]="registerForm.controls['nacimiento'].invalid && (registerForm.controls['nacimiento'].dirty || registerForm.controls['nacimiento'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
+          />
+        </div>
+        <div class="form-group mb-2">
+          <label for="facultad">Facultad:</label>
+          <select required formControlName="facultad" name="select-facultad" id="facultad" placeholder="Seleccione una facultad..." [ngClass]="registerForm.controls['facultad'].invalid && (registerForm.controls['facultad'].dirty || registerForm.controls['facultad'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
+            <option value="" disabled selected hidden>Seleccione una facultad...</option>
+            <option *ngFor="let n of facultades" [value]="n.id">{{n.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="sport">Deporte:</label>
+          <select required formControlName="sport" name="select-disciplina" id="sport" placeholder="Seleccione un deporte..." [ngClass]="registerForm.controls['sport'].invalid && (registerForm.controls['sport'].dirty || registerForm.controls['sport'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
+            <option value="" disabled selected hidden>Seleccione un deporte...</option>
+            <option *ngFor="let n of deportes" [value]="n.id">{{n.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="nacionality">Nacionalidad:</label>
+          <select required formControlName="nacionality" name="select-nacionalidad" id="nacionality" [ngClass]="registerForm.controls['nacionality'].invalid && (registerForm.controls['nacionality'].dirty || registerForm.controls['nacionality'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
+            <option value="" disabled selected hidden>Seleccione una nacionalidad...</option>
+            <option *ngFor="let n of nacionalidades" [value]="n.id">{{n.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="rol">Rol:</label>
+          <select required formControlName="rol" name="select-rol" id="rol" [ngClass]="registerForm.controls['rol'].invalid && (registerForm.controls['rol'].dirty || registerForm.controls['rol'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
+            <option value="" disabled selected hidden>Seleccione un rol...</option>
+            <option *ngFor="let n of roles" [value]="n.id">{{n.nombre}}</option>
+          </select>
+        </div>
+        <div>
+          <input
+            type="submit"
+            class="btn btn-primary w-100"
+            name="submit"
+            id="submit"
+            value="Enviar"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

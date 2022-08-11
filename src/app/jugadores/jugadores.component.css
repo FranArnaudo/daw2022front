@@ -1,0 +1,16 @@
+.page-item{
+  cursor: pointer;
+}
+.form-select{
+  cursor: pointer;
+}
+.page-size{
+  height: 36px;
+  border: 1px #CCC solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.disabled{
+  cursor:default;
+}
