@@ -25,7 +25,10 @@ export class NacionalidadesComponent implements OnInit {
   nacionalidades: any;
   facultades: any;
   filtro: any = {};
-  paginado: any;
+  paginado: any = {
+    totalPages: 1,
+    currentPage: 0,
+  };
   size: Number = 1;
   page: Number = 0;
 
@@ -34,11 +37,22 @@ export class NacionalidadesComponent implements OnInit {
       .getNacionalidades()
       .subscribe((res) => (this.nacionalidades = res));
   }
+  setPage(i:Number){
 
+  }
+  setSize(i:any){
+
+  }
+  goToEdit(i:Number){
+
+  }
+  delete(i:Number){
+
+  }
   goHome(): void {
     this.router.navigate(['home']);
   }
   goCreate(): void {
-    this.router.navigate(['jugadores/nuevo']);
+    this.router.navigate(['nacionalidades/nuevo']);
   }
 }

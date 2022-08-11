@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NacionalidadesComponent } from './nacionalidades/nacionalidades.component';
+import { AddNacionalidadComponent } from './add-nacionalidad/add-nacionalidad.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NacionalidadesComponent } from './nacionalidades/nacionalidades.compone
     JugadoresComponent,
     EditUserComponent,
     NacionalidadesComponent,
+    AddNacionalidadComponent,
   ],
   imports: [
     BrowserModule,

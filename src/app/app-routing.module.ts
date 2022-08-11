@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { JugadoresComponent } from './jugadores/jugadores.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NacionalidadesComponent } from './nacionalidades/nacionalidades.component';
+import { AddNacionalidadComponent } from './add-nacionalidad/add-nacionalidad.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'jugadores', component: JugadoresComponent },
   { path: 'jugadores/editar/:id', component: EditUserComponent },
   { path: 'nacionalidades', component: NacionalidadesComponent },
+  { path: 'nacionalidades/nuevo', component: AddNacionalidadComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -21,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
