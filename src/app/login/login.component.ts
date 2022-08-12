@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm.controls['usuario'].value)
     this.router.navigate(['home'])
     this.enviado=true;
   }

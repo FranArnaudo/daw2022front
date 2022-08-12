@@ -16,16 +16,16 @@
           formControlName="nombre"
           [ngClass]="nacionalityForm.controls['nombre'].invalid && (nacionalityForm.controls['nombre'].dirty || nacionalityForm.controls['nombre'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
           />
-          <small [ngClass]="nacionalityForm.controls['nombre'].invalid && (nacionalityForm.controls['nombre'].dirty || nacionalityForm.controls['nombre'].touched || enviado) ? 'text-danger' : 'd-none'">Nombre invalido</small>
         </div>
+        <small [ngClass]="nacionalityForm.controls['nombre'].invalid && (nacionalityForm.controls['nombre'].dirty || nacionalityForm.controls['nombre'].touched || enviado) ? 'text-danger' : 'd-none'">Nombre invalido</small>
         <div class="form-group mb-2">
           <label for="lastname">Codigo:</label>
           <input
           formControlName="codigo"
           [ngClass]="nacionalityForm.controls['codigo'].invalid && (nacionalityForm.controls['codigo'].dirty || nacionalityForm.controls['codigo'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
           />
-          <small [ngClass]="nacionalityForm.controls['codigo'].invalid && (nacionalityForm.controls['codigo'].dirty || nacionalityForm.controls['codigo'].touched || enviado) ? 'text-danger' : 'd-none'">Código invalido</small>
         </div>
+        <small [ngClass]="nacionalityForm.controls['codigo'].invalid && (nacionalityForm.controls['codigo'].dirty || nacionalityForm.controls['codigo'].touched || enviado) ? 'text-danger' : 'd-none'">Código invalido</small>
         <div class="form-group mb-2">
           <label for="email">Descripcion:</label>
           <input

@@ -4,11 +4,10 @@
       <h3>Registrar nuevo jugador</h3>
     </div>
     <div class="card-body">
-      <div class="card-body container">
-        <div class="btn-group">
-          <button class="btn btn-secondary" (click)="goHome()">Home</button>
-          <button class="btn btn-primary" (click)="goToList()">Listado de jugadores</button>
-        </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" (click)="goHome()">Home</button>
+        <button class="btn btn-primary" (click)="goToList()">Listado de jugadores</button>
+      </div>
       <form [formGroup]="registerForm"(ngSubmit)="onSubmit($event)">
         <div class="form-group mb-2">
           <label for="firstname">Nombre:</label>
@@ -19,7 +18,9 @@
             formControlName="firstname"
             name="firstname"
             type="text"
+
           />
+          <small [ngClass]="registerForm.controls['firstname'].invalid && (registerForm.controls['firstname'].dirty || registerForm.controls['firstname'].touched || enviado) ? 'text-danger' : 'd-none'">Nombre invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="lastname">Apellido:</label>
@@ -31,6 +32,7 @@
             name="lastname"
             type="text"
           />
+          <small [ngClass]="registerForm.controls['lastname'].invalid && (registerForm.controls['lastname'].dirty || registerForm.controls['lastname'].touched || enviado) ? 'text-danger' : 'd-none'">Apellido invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="email">Email:</label>
@@ -42,6 +44,7 @@
             name="email"
             type="text"
           />
+          <small [ngClass]="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched || enviado) ? 'text-danger' : 'd-none'">Email invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="dni">DNI:</label>
@@ -53,6 +56,7 @@
             name="dni"
             type="number"
           />
+          <small [ngClass]="registerForm.controls['dni'].invalid && (registerForm.controls['dni'].dirty || registerForm.controls['dni'].touched || enviado) ? 'text-danger' : 'd-none'">DNI invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="phone">Telefono:</label>
@@ -63,6 +67,7 @@
             name="phone"
             type="number"
           />
+          <small [ngClass]="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].dirty || registerForm.controls['phone'].touched || enviado) ? 'text-danger' : 'd-none'">Telefono invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="legajo">Legajo:</label>
@@ -73,12 +78,14 @@
             name="legajo"
             type="number"
           />
+          <small [ngClass]="registerForm.controls['legajo'].invalid && (registerForm.controls['legajo'].dirty || registerForm.controls['legajo'].touched || enviado) ? 'text-danger' : 'd-none'">Legajo invalido</small>
         </div>
         <div class="form-group mb-2">
           <label for="nacimiento">Fecha de nacimiento:</label>
-          <input id="nacimiento" type="date" formControlName="nacimiento"
+          <input max="2022-08-12" id="nacimiento" type="date" formControlName="nacimiento"
           [ngClass]="registerForm.controls['nacimiento'].invalid && (registerForm.controls['nacimiento'].dirty || registerForm.controls['nacimiento'].touched || enviado) ? 'is-invalid form-control' : 'form-control'"
           />
+          <small [ngClass]="registerForm.controls['nacimiento'].invalid && (registerForm.controls['nacimiento'].dirty || registerForm.controls['nacimiento'].touched || enviado) ? 'text-danger' : 'd-none'">Fecha invalida</small>
         </div>
         <div class="form-group mb-2">
           <label for="facultad">Facultad:</label>
@@ -86,13 +93,15 @@
             <option value="" disabled selected hidden>Seleccione una facultad...</option>
             <option *ngFor="let n of facultades" [value]="n.id">{{n.nombre}}</option>
           </select>
+          <small [ngClass]="registerForm.controls['facultad'].invalid && (registerForm.controls['facultad'].dirty || registerForm.controls['facultad'].touched || enviado) ? 'text-danger' : 'd-none'">Por favor, seleccione una opcion</small>
         </div>
         <div class="form-group mb-2">
-          <label for="sport">Deporte:</label>
-          <select required formControlName="sport" name="select-disciplina" id="sport" placeholder="Seleccione un deporte..." [ngClass]="registerForm.controls['sport'].invalid && (registerForm.controls['sport'].dirty || registerForm.controls['sport'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
-            <option value="" disabled selected hidden>Seleccione un deporte...</option>
+          <label for="sport">Disciplina:</label>
+          <select required formControlName="sport" name="select-disciplina" id="sport" placeholder="Seleccione una disciplina..." [ngClass]="registerForm.controls['sport'].invalid && (registerForm.controls['sport'].dirty || registerForm.controls['sport'].touched || enviado) ? 'is-invalid form-select' : 'form-select'">
+            <option value="" disabled selected hidden>Seleccione una disciplina...</option>
             <option *ngFor="let n of deportes" [value]="n.id">{{n.nombre}}</option>
           </select>
+          <small [ngClass]="registerForm.controls['sport'].invalid && (registerForm.controls['sport'].dirty || registerForm.controls['sport'].touched || enviado) ? 'text-danger' : 'd-none'">Por favor, seleccione una opcion</small>
         </div>
         <div class="form-group mb-2">
           <label for="nacionality">Nacionalidad:</label>
@@ -100,6 +109,7 @@
             <option value="" disabled selected hidden>Seleccione una nacionalidad...</option>
             <option *ngFor="let n of nacionalidades" [value]="n.id">{{n.nombre}}</option>
           </select>
+          <small [ngClass]="registerForm.controls['nacionality'].invalid && (registerForm.controls['nacionality'].dirty || registerForm.controls['nacionality'].touched || enviado) ? 'text-danger' : 'd-none'">Por favor, seleccione una opcion</small>
         </div>
         <div class="form-group mb-2">
           <label for="rol">Rol:</label>
@@ -107,6 +117,7 @@
             <option value="" disabled selected hidden>Seleccione un rol...</option>
             <option *ngFor="let n of roles" [value]="n.id">{{n.nombre}}</option>
           </select>
+          <small [ngClass]="registerForm.controls['rol'].invalid && (registerForm.controls['rol'].dirty || registerForm.controls['rol'].touched || enviado) ? 'text-danger' : 'd-none'">Por favor, seleccione una opcion</small>
         </div>
         <div>
           <input

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +11,7 @@ import { NacionalidadesService } from '../servicios/nacionalidades.service';
 })
 export class NacionalidadesComponent implements OnInit {
   searchForm = this.builder.group({
-    name: [''],
+    text: [''],
   });
   paginationForm = this.builder.group({
     size: [''],
@@ -20,7 +21,7 @@ export class NacionalidadesComponent implements OnInit {
     private servicioNacionalidades: NacionalidadesService,
     private builder: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   nacionalidades: any;
   facultades: any;
@@ -29,25 +30,91 @@ export class NacionalidadesComponent implements OnInit {
     totalPages: 1,
     currentPage: 0,
   };
-  size: Number = 1;
+  size: Number = 4;
   page: Number = 0;
+  error: any;
 
   ngOnInit(): void {
+    console.log('')
+    this.filtro = {
+      page: this.page,
+      size: this.size
+    }
     this.servicioNacionalidades
-      .getNacionalidades()
-      .subscribe((res) => (this.nacionalidades = res));
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
   }
-  setPage(i:Number){
-
+  search() {
+    this.filtro = {
+      ...this.filtro,
+      text: this.searchForm.controls['text'].value,
+      page: 0,
+      size: this.size
+    }
+    this.servicioNacionalidades
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
   }
-  setSize(i:any){
-
+  setPage(page: Number) {
+    this.page = page
+    this.filtro = {
+      ...this.filtro,
+      page: this.page
+    }
+    this.servicioNacionalidades
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
   }
-  goToEdit(i:Number){
-
+  setSize(size: any) {
+    this.size = size.value
+    this.filtro = {
+      ...this.filtro,
+      size: this.size
+    }
+    this.servicioNacionalidades
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
   }
-  delete(i:Number){
-
+  goToEdit(id: Number) {
+    this.router.navigate([`nacionalidades/editar`, id])
+  }
+  delete(id: Number) {
+    this.servicioNacionalidades.borrarNacionalidad(id).subscribe((res: any) => { }, (error: HttpErrorResponse) => { this.error = true })
+    setTimeout(()=>{
+      this.servicioNacionalidades
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
+    },1000)
   }
   goHome(): void {
     this.router.navigate(['home']);

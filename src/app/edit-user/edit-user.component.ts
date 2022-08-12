@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DisciplinasService } from '../servicios/disciplinas.service';
@@ -22,15 +22,15 @@ export class EditUserComponent implements OnInit {
   facultades :any;
   jugador : any ={};
   roles: any;
-
+  errores:any;
   registerForm =this.builder.group(
     {
       firstname:['',[Validators.required,Validators.minLength(2)]],
       lastname:['',[Validators.required,Validators.minLength(2)]],
       email:['',[Validators.required,Validators.email]],
-      dni:['',[Validators.required,Validators.min(1)]],
-      phone:['',[Validators.required,Validators.minLength(7)]],
-      legajo:['',[Validators.required,Validators.minLength(4)]],
+      dni:['',[Validators.required,Validators.min(99999)]],
+      phone:['',[Validators.required,Validators.min(1000000)]],
+      legajo:['',[Validators.required]],
       nacimiento:['',[Validators.required]],
       facultad:['',[Validators.required]],
       sport:['',[Validators.required]],
@@ -79,7 +79,6 @@ export class EditUserComponent implements OnInit {
   }
   onSubmit(e : Event){
     e.preventDefault()
-    console.log(this.nacionalidades)
     this.jugador.id = this.id;
     this.jugador.nombre = this.registerForm.controls['firstname'].value;
     this.jugador.apellido = this.registerForm.controls['lastname'].value;
@@ -93,9 +92,25 @@ export class EditUserComponent implements OnInit {
     this.jugador.nacionalidad = {id: Number(this.registerForm.controls['nacionality'].value)}
     this.jugador.rol = {id: Number(this.registerForm.controls['rol'].value)}
     
-    this.servicioJugadores.editarJugador(this.jugador)
+    this.errores = Boolean(
+      this.registerForm.controls['firstname'].invalid || 
+      this.registerForm.controls['lastname'].invalid || 
+      this.registerForm.controls['email'].invalid || 
+      this.registerForm.controls['dni'].invalid || 
+      this.registerForm.controls['phone'].invalid || 
+      this.registerForm.controls['legajo'].invalid || 
+      this.registerForm.controls['nacimiento'].invalid || 
+      this.registerForm.controls['facultad'].invalid || 
+      this.registerForm.controls['sport'].invalid || 
+      this.registerForm.controls['nacionality'].invalid || 
+      this.registerForm.controls['rol'].invalid 
+      )
+      this.enviado=true;
+    if(!this.errores){
+      this.servicioJugadores.editarJugador(this.jugador).subscribe((res:any)=>{
+        this.router.navigate(['jugadores']);
+      },(error:any)=>{})
+    }
 
-    this.enviado=true;
-    // this.router.navigate(['jugadores']);
   }
 }

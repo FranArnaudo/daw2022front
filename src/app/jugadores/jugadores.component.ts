@@ -36,11 +36,12 @@ export class JugadoresComponent implements OnInit {
   facultades :any;
   filtro: any = {}
   paginado: any;
-  size: Number = 1;
+  size: Number = 4;
   page: Number = 0;
 
   
   ngOnInit(): void {
+    console.log('')
     this.servicioJugadores.getJugadores().subscribe((res : any) => {
       this.paginado = {
         totalPages: res.totalPages,
@@ -68,7 +69,6 @@ export class JugadoresComponent implements OnInit {
   
 
   setSize(size:any):void{
-    console.log('a')
     this.size = size.value
     this.filtro = {
       ...this.filtro,
@@ -92,7 +92,6 @@ export class JugadoresComponent implements OnInit {
       page: 0,
       size: this.size
     }
-    console.log(this.filtro)
     this.servicioJugadores.getJugadores(this.filtro).subscribe((res : any) => {
       this.paginado = {
         totalPages: res.totalPages,
@@ -112,7 +111,6 @@ export class JugadoresComponent implements OnInit {
     this.router.navigate(['jugadores/editar',id])
   }
   delete(id:Number):void{
-    console.log(id)
     this.servicioJugadores.borrarJugador(id).then
     setTimeout(()=>{
       this.servicioJugadores.getJugadores(this.filtro).subscribe((res : any) => {

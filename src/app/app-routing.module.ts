@@ -7,6 +7,7 @@ import { JugadoresComponent } from './jugadores/jugadores.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NacionalidadesComponent } from './nacionalidades/nacionalidades.component';
 import { AddNacionalidadComponent } from './add-nacionalidad/add-nacionalidad.component';
+import { EditNacionalidadComponent } from './edit-nacionalidad/edit-nacionalidad.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'jugadores/editar/:id', component: EditUserComponent },
   { path: 'nacionalidades', component: NacionalidadesComponent },
   { path: 'nacionalidades/nuevo', component: AddNacionalidadComponent },
+  { path: 'nacionalidades/editar/:id', component: EditNacionalidadComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

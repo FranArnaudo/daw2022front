@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   navigateToNacionalidades() {
     this.router.navigate(['nacionalidades']);
   }
-  navigateToDisciplinas() {
-    this.router.navigate(['disciplinas']);
+  navigateToNewNacionalidad() {
+    this.router.navigate(['nacionalidades/nuevo']);
   }
 }

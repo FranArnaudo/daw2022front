@@ -7,9 +7,6 @@
     <div class="card-body container">
       <div class="btn-group">
         <button class="btn btn-secondary" (click)="goHome()">Home</button>
-        <button class="btn btn-primary" (click)="goCreate()">
-          Nuevo jugador
-        </button>
         <button
           class="btn btn-primary d-flex justify-content-end"
           (click)="goCreate()"
@@ -27,19 +24,20 @@
                 id="text"
                 formControlName="text"
                 class="form-control d-inline"
-                placeholder="Busque por Nombre, Apellido, DNI..."
+                placeholder="Busque por Nombre o Código..."
               />
               <input
                 type="button"
                 id="send-query"
                 class="btn btn-primary"
                 value="Buscar"
-                (click)="goHome()"
+                (click)="search()"
               />
             </div>
           </div>
         </div>
       </form>
+      <div role="alert" [ngClass]="error ? 'alert alert-danger d-flex justify-content-between' : 'd-none'">No se puede eliminar porque esta asociado a un jugador<span style="cursor: pointer;" (click)="error= false">X</span></div>
       <div class="table w-100">
         <thead class="w-100">
           <tr class="w-100">
@@ -108,9 +106,10 @@
           </li>
         </ul>
         <select id="size" class="page-size" (change)="setSize($event.target)">
-          <option value="2" selected>2</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
+          <option value="2">2</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
         </select>
       </nav>
     </div>
