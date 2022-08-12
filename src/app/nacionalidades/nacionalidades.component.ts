@@ -21,11 +21,13 @@ export class NacionalidadesComponent implements OnInit {
     private servicioNacionalidades: NacionalidadesService,
     private builder: FormBuilder,
     private router: Router
-  ) { }
-
+    ) { }
+    
   nacionalidades: any;
   facultades: any;
   filtro: any = {};
+  previousSortField: String = 'id';
+  isASC:any;
   paginado: any = {
     totalPages: 1,
     currentPage: 0,
@@ -39,6 +41,29 @@ export class NacionalidadesComponent implements OnInit {
     this.filtro = {
       page: this.page,
       size: this.size
+    }
+    this.servicioNacionalidades
+      .getNacionalidades(this.filtro)
+      .subscribe((res:any) =>{
+        this.nacionalidades = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
+  }
+  sortBy(sortField:any){
+    if(sortField!== this.previousSortField){
+      this.isASC = true;
+      this.previousSortField = sortField
+    }else{
+      this.isASC = !this.isASC
+    }
+
+    this.filtro ={
+      ...this.filtro,
+      sort: sortField,
+      order:this.isASC ? 'ASC' : 'DESC'
     }
     this.servicioNacionalidades
       .getNacionalidades(this.filtro)

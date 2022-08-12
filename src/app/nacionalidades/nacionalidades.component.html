@@ -41,10 +41,10 @@
       <div class="table w-100">
         <thead class="w-100">
           <tr class="w-100">
-            <th scope="col">ID</th>
-            <th scope="col">Codigo</th>
-            <th scope="col" class="w-50">Nombre</th>
-            <th scope="col" class="w-50">Descripcion</th>
+            <th scope="col" class="pointer" (click)="sortBy('id')">ID</th>
+            <th scope="col" class="pointer" (click)="sortBy('codigo')">Codigo</th>
+            <th scope="col" class="w-50 pointer" (click)="sortBy('nombre')">Nombre</th>
+            <th scope="col" class="w-50 pointer" (click)="sortBy('descripcion')">Descripcion</th>
           </tr>
         </thead>
         <tbody class="w-100">

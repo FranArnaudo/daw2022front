@@ -16,7 +16,7 @@ export class NacionalidadesService {
     if(!filtro){
       return this.http.get('http://localhost:8080/nacionalidades');
     }
-    this.params = `?` +( filtro.text !== undefined ? `filtro=${filtro.text}&` : '') + (filtro.page !== undefined ? `page=${filtro.page}&`:'') + (filtro.size ?`size=${filtro.size}`:'')  
+    this.params = `?` +( filtro.text !== undefined ? `filtro=${filtro.text}&` : '') + (filtro.page !== undefined ? `page=${filtro.page}&`:'') + (filtro.size ?`size=${filtro.size}&`:'')  + (filtro.sort ?`sort=${filtro.sort}&`:'')+ (filtro.order ?`order=${filtro.order}`:'')
     return this.http.get(`http://localhost:8080/nacionalidades${this.params}`);
   }
   getNacionalidad(id: Number):any{

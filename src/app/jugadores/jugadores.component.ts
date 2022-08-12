@@ -36,6 +36,8 @@ export class JugadoresComponent implements OnInit {
   facultades :any;
   filtro: any = {}
   paginado: any;
+  isASC:any;
+  previousSortField:any;
   size: Number = 4;
   page: Number = 0;
 
@@ -51,6 +53,29 @@ export class JugadoresComponent implements OnInit {
     });
     this.servicioNacionalidades.getNacionalidades().subscribe((res)=> this.nacionalidades = res);
     this.servicioFacultades.getFacultades().subscribe(res=>this.facultades = res);
+  }
+  sortBy(sortField:any){
+    if(sortField!== this.previousSortField){
+      this.isASC = true;
+      this.previousSortField = sortField
+    }else{
+      this.isASC = !this.isASC
+    }
+
+    this.filtro ={
+      ...this.filtro,
+      sort: sortField,
+      order:this.isASC ? 'ASC' : 'DESC'
+    }
+    this.servicioJugadores
+      .getJugadores(this.filtro)
+      .subscribe((res:any) =>{
+        this.jugadores = res.content;
+        this.paginado = {
+          totalPages: res.totalPages,
+          currentPage: res.number
+        }
+      });
   }
   setPage(page:Number):void{
     this.page = page

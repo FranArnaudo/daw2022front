@@ -21,7 +21,7 @@ export class JugadorService {
   }
   getJugadores(filtro?:any){
     if(filtro){
-      this.params = `?` +( filtro.text !== undefined ? `filtro=${filtro.text}&` : '') + (filtro.nacionalidad !== undefined ? `nacionalidad=${filtro.nacionalidad}&` : '') +( filtro.facultad ? `facultad=${filtro.facultad}&`:'')+ (filtro.page ? `page=${filtro.page}&`:'') + (filtro.size ?`size=${filtro.size}`:'')  
+      this.params = `?` +( filtro.text !== undefined ? `filtro=${filtro.text}&` : '') + (filtro.nacionalidad !== undefined ? `nacionalidad=${filtro.nacionalidad}&` : '') +( filtro.facultad ? `facultad=${filtro.facultad}&`:'')+ (filtro.page ? `page=${filtro.page}&`:'') + (filtro.size ?`size=${filtro.size}&`:'') + (filtro.sort ?`sort=${filtro.sort}&`:'')+ (filtro.order ?`order=${filtro.order}`:'') 
     }
     return this.http.get(`http://localhost:8080/jugadores${this.params}`)
   }

@@ -39,13 +39,13 @@
       <div class="table w-100">
         <thead class="w-100">
           <tr class="w-100">
-            <th scope="col" class="w-50">Nombre y Apellido</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Fecha Nacimiento</th>
-            <th scope="col">Facultad</th>
-            <th scope="col">Disciplina</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Nacionalidad</th>
+            <th scope="col" class="w-50 pointer" (click)="sortBy('nombre')">Nombre y Apellido</th>
+            <th scope="col" class="pointer" (click)="sortBy('dni')">DNI</th>
+            <th scope="col" class="pointer" (click)="sortBy('fechaNacimiento')">Fecha Nacimiento</th>
+            <th scope="col" class="pointer" (click)="sortBy('facultad.nombre')">Facultad</th>
+            <th scope="col" class="pointer" (click)="sortBy('disciplina.nombre')">Disciplina</th>
+            <th scope="col" class="pointer" (click)="sortBy('rol.nombre')">Rol</th>
+            <th scope="col" class="pointer" (click)="sortBy('nacionalidad.nombre')">Nacionalidad</th>
             <th scope="col"class="w-50"></th>
           </tr>
         </thead>
